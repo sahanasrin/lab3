@@ -10,8 +10,26 @@ $(document).ready(function() {
  */
 function initializePage() {
 	$("#testjs").click(function(e) {
-		$('.jumbotron h1').text("Javascript is connected");
+		$('.jumbotron h1').text("Javascript is in total control");
+		/*$(".jumbotron p").addClass("active"); */
+		$(".jumbotron p").toggleClass("active"); 
+		$("#testjs").text("Please wait..."); 
 	});
+	$("a.thumbnail").click(projectClick);
+}
+function projectClick(e){
+	console.log("Project clicked")
+	e.preventDefault(); 
+    var containingProject = $(this).closest(".project");
+    /*containingProject.append("<div class='project-description'><p>Description of the project.</p></div>");*/
+     var description = $(containingProject).find(".project-description");
+    if (description.length == 0) {
+       $(containingProject).append("<div class='project-description'><p>Description of the project.</p></div>");
+    } else {
+       description.html("<p>Stop clicking on me! You just did it at " + (new Date()) + "</p>");
+}
+    
+
 
 	// Add any additional listeners here
 	// example: $("#div-id").click(functionToCall);
